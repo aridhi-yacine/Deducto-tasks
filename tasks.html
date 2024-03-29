@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <img src="logo.webp" alt="Logo" class="logo">
+    <center>
+        <h1 id="role"></h1>
+        <h1>Your Task :</h1>
+        <h2 id="task"></h2>
+    </center>
+    <button class="submit-btn" onclick="anotherRound()">Start Another Round</button>
+    
+
+  </div>
+
+  <script>
+    function displayTaskFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const task = urlParams.get('task');
+      const role = urlParams.get('role');
+
+      const taskElement = document.getElementById('task');
+      
+      if (role == "imposter"){
+        document.getElementById("role").textContent = "Imposter 😈";
+      }
+      if (role == "crew"){
+        document.getElementById("role").textContent = "Crewmate 🤓";
+      }
+      if (role == "security"){
+        document.getElementById("role").textContent = "Security 🫡";
+      }
+
+      if (task) {
+        taskElement.textContent = task;
+      } else {
+        taskElement.textContent = "Please select a role to get tasks.";
+      }
+      if (role) {
+        document.body.classList.add(role.toLowerCase()); 
+      }
+    }
+    function anotherRound(){
+        window.location.href = "index.html";
+    }
+
+    displayTaskFromURL();
+  </script>
+</body>
+</html>
